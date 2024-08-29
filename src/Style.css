@@ -151,6 +151,9 @@
     flex-direction: column;
     gap: 0.8rem;
 }
+.loan-calculation .result-area footer{
+    gap: 0.8rem;
+}
 .loan-calculation .result-area .heading .main b{
     color: var(--primary-color);
     font-style: italic;

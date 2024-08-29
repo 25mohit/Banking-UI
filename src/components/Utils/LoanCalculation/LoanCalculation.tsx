@@ -5,6 +5,10 @@ import Select from '../FormInput/Select';
 import { GrNext } from "react-icons/gr";
 import { formatCurrency, INRCurrency } from '../../../functions/FormatCurrency';
 import { CalculateLoan } from '../../../functions/CalculateLoan';
+import { jsPDF } from 'jspdf';
+import { RiFileExcel2Line } from "react-icons/ri";
+import { GeneratePDF } from '../../../functions/Utils';
+import FAQ from '../Helpers/FAQ/FAQ';
 
 const LoanCalculation = () => {
     const [loanForm, setLoanForm] = useState({
@@ -106,9 +110,7 @@ const LoanCalculation = () => {
             })
         }
         
-    }
-    console.log("loanForm", summury);
-    
+    }   
     
   return (
     <div className='loan-calculation'>
@@ -123,7 +125,7 @@ const LoanCalculation = () => {
             <div className="result-area df">
                 <div className="heading">
                     <span>Required : </span>
-                    <span className='main'><b>₹{formatCurrency(Number(summury?.d?.amount))} Loan</b> for <b>{summury?.d?.tenure} months</b> with <b>{summury?.d?.interest}%</b> pa</span>
+                    <span className='main'><b>₹{formatCurrency(Number(summury?.d?.amount))} </b>Loan for <b>{summury?.d?.tenure} months</b> with <b>{summury?.d?.interest}%</b> pa</span>
                 </div>
                 <div className="summury df">
                     <table className='summury-table'>
@@ -155,24 +157,14 @@ const LoanCalculation = () => {
                         </tbody>
                     </table>
                 </div>
-                <button className="btn">Proceed <GrNext /></button>
+                <footer className='df aic'>
+                    <button className="btn">Proceed <GrNext /></button>
+                    <button className='export-btn' onClick={() => GeneratePDF(summury)}>Download <RiFileExcel2Line /></button>
+                </footer>
             </div>
         </section>
         <p className='terms-heading'>Terms and Condition</p>
-        <ul className='terms'>
-            <li>We request you to allow premature withdrawal of Fixed Deposits in line with the operating instructions - ‘Either or Survivor’, 'Anyone or Survivor' or ‘Former or Survivor’. 
-</li>
-            <li>The same will be applicable even in the event of death of any of the Joint depositors prior to
-            maturity of the deposit. </li>
-            <li>Any such repayment before maturity shall constitute a valid discharge of
-the Bank’s obligations against all concerned including but not limited to the nominees/ legal heirs
-of the depositors or anyone claiming under them</li>
-            <li> The Bank shall be able to discharge its
-            obligations without any need for No Objection Certificates from the nominees/ legal heirs. </li>
-            <li>We further understand that premature withdrawal of Fixed Deposits is subject to penal rates as
-per the Bank's policies. However, such penalty shall not be levied when premature withdrawal is
-done in case of death of any one of us (Joint holders). </li>
-        </ul>
+        <FAQ />
     </div>
   )
 }

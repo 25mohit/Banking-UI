@@ -73,9 +73,26 @@ a{
 .field input, .field select{
   border: 1px solid var(--primary-color);
   padding: 0.6rem 1rem;
+  border-radius: 1px;
+  height: 2.5rem;
   outline: none;
+  background-color: white;
+  font-size: 0.9rem;
 }
 .field input:focus, .field select:focus{
   box-shadow: 0 0 3px 1px var(--primary-color);
   transition: 0.3s;
+}
+.export-btn{
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1rem;
+  border: none;
+  background: none;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+.export-btn:hover{
+  text-decoration: underline;
 }

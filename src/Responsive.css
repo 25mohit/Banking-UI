@@ -3,9 +3,6 @@
         min-width: 350px;
         border-right: none;
     }
-    .section{
-        max-width: 95vw;
-    }
     .loan-calculation > section {
         gap: 2rem;
         justify-content: center;
@@ -29,15 +26,6 @@
         font-size: 1.4rem;
         display: flex;
     }
-/*     
-    .navbar .mobile-section.show{
-        display: flex;
-        
-        transition: 1s;
-        transform: translateX(-100%);
-
-
-    } */
 }
 @media screen and (max-width: 525px) {
     
