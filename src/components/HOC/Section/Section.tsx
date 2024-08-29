@@ -1,8 +1,13 @@
 import React from 'react'
 
-const Section = () => {
+interface SectionInterface{
+    children?: any
+}
+const Section:React.FC<SectionInterface> = ({ children }) => {
   return (
-    <section className='section'>Section</section>
+    <section className='section'>
+        {children}
+    </section>
   )
 }
 

@@ -1,11 +1,10 @@
 .navbar .top{
-    padding: var(--primary-padding);
+    padding: var(--primary-padding) 2rem;
     height: 60%;
 }
-.navbar .top > h3{
-    color: var(--primary-color);
+.navbar .top > .logo{
+    width: 9rem;
     cursor: pointer;
-    user-select: none;
 }
 .navbar .menu-section{
     height: 40%;
@@ -58,4 +57,39 @@
 }
 .section{
     padding: var(--primary-padding);
+}
+.loan-calculation{
+    padding: 1rem 2rem;
+}
+.loan-calculation > section {
+    border: 1px solid rgba(201, 201, 201, 0.753);
+    padding:  1rem var(--primary-padding);
+    border-radius: 5px;
+    flex-wrap: wrap;
+}
+.loan-calculation > h3 {
+    font-weight: normal;
+    font-size: 1.3rem;
+    margin-bottom: 1.7rem;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+    text-decoration-color: var(--primary-color);
+}
+.loan-calculation > h3 > span {
+    font-weight: bold;
+    font-style: italic;
+    color: var(--primary-color);
+}
+.loan-calculation .input-form{
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    width: 50%;
+border-right: 1px solid rgba(201, 201, 201, 0.753);
+}
+.loan-calculation .result-area{
+    justify-content: start;
+    width: 50%;
+    padding: 0 var(--primary-padding);
 }

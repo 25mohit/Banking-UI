@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className='navbar'>
         <div className="top df aic jcsb">
-            <h3>ICICI Bank</h3>
+            <img className='logo' src="/Assets/logo.png" alt="" />
             <button className="btn">Login <FaChevronDown /></button>
         </div>
         <div className="menu-section df aic jcc">

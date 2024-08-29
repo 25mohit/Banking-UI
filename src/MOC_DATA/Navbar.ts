@@ -84,7 +84,7 @@ export const navbarOption = [
                 link: '/fix'
             },
             {
-                label: 'Homr Loan',
+                label: 'Home Loan',
                 link: '/recurring'
             },
             {

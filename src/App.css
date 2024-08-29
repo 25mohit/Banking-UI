@@ -30,15 +30,40 @@
 .btn{
   background-color: var(--primary-color);
   color: white;
-  border: none;
-  padding: 0.4rem 1.3rem;
-  border-radius: 15px;
+  border: 1px solid var(--primary-color);
+  padding: 0.6rem 1rem;
+  border-radius: 20px;
   font-size: 1rem;
-  cursor: pointer;
+  width: fit-content;
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  transition: 0.2s;
+}
+.btn:hover{
+  cursor: pointer;
+  transition: 0.2s;
+  background-color: white;
+  color: var(--primary-color);
 }
 a{
   text-decoration: none;
+}
+.field{
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 19rem;
+}
+.field > label{
+  color: rgb(37, 37, 37);
+  font-size: 1rem;
+}
+.field input, .field select{
+  border: 1px solid var(--primary-color);
+  padding: 0.6rem 1rem;
+  outline: none;
+}
+.field input:focus, .field select:focus{
+  box-shadow: 0 0 3px 1px var(--primary-color);
+  transition: 0.3s;
 }

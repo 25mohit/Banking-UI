@@ -4,12 +4,18 @@ import './Style.css';
 import Navbar from './components/Utils/Navbar/Navbar';
 import Section from './components/HOC/Section/Section';
 import Footer from './components/Utils/Footer/Footer';
+import LoanCalculation from './components/Utils/LoanCalculation/LoanCalculation';
 
 function App() {
   return (
     <div className="App">
+
       <Navbar />
-      <Section />
+      {/* Home Page - STARTS -*/}
+      <Section>
+        <LoanCalculation />
+      </Section>
+      {/* Home Page - ENDS -*/}
       <Footer />
     </div>
   );
