@@ -1,3 +1,7 @@
+.navbar{
+    position: relative;
+
+}
 .navbar .top{
     padding: var(--primary-padding) 2rem;
     height: 60%;
@@ -14,6 +18,59 @@
     list-style: none;
     /* gap: 3rem; */
     font-size: 1rem;
+}
+.navbar .mobile-section{
+    background-color: white;
+    box-shadow: -5px 2px 20px 1px rgba(20, 20, 20, 0.407);
+    position: absolute;
+    width: 350px;
+    padding: var(--primary-padding);
+    top: 100%;
+    height: calc(100vh - var(--navbar-height));
+    right: 0;
+    display: none;
+}
+
+.navbar .mobile-section.show{
+    display: block;
+}
+.navbar .mobile-section > ul{
+    list-style: none;
+    display: flex;
+    gap: 0.6rem;
+    flex-direction: column;
+}
+.navbar .mobile-section > ul > li > p{
+    flex-direction: column;
+    color: var(--primary-color);
+    font-weight: bold;
+    cursor: pointer;
+}
+.navbar .mobile-section > ul > li > p span{
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+}
+.navbar .mobile-section > ul > li > p .overflow{
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.2rem;
+    text-align: center;
+    margin-bottom: 0.6rem;
+}
+.navbar .mobile-section > ul > li > p.show .overflow{
+    display: flex;
+}
+
+.navbar .mobile-section > ul > li > p .overflow li a{
+    color: #3c3c3c;
+    font-weight: normal;
 }
 .navbar .menu-section > ul > li{
     cursor: pointer;
@@ -50,7 +107,6 @@
     text-decoration: underline;
 }
 .footer{
-    font-size: 0.9rem;
     letter-spacing: 0.5px;
     color: gray;
     user-select: none;
@@ -86,7 +142,7 @@
     flex-direction: column;
     gap: 1.4rem;
     width: 50%;
-border-right: 1px solid rgba(201, 201, 201, 0.753);
+    border-right: 1px solid rgba(201, 201, 201, 0.753);
 }
 .loan-calculation .result-area{
     justify-content: start;
@@ -128,12 +184,19 @@ border-right: 1px solid rgba(201, 201, 201, 0.753);
 .summury-table .total td{
     padding: 0.3rem 0.7rem;
 }
+.terms-heading{
+    margin: 0.7rem 0;
+    margin-top: 1.2rem;
+    color: rgb(157, 157, 157);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
 .terms{
     list-style: none;
-    margin: 2rem 0;
+    /* margin: 2rem 0; */
     font-size: 0.8rem;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    color: gray;
+    gap: 0.6rem;
+    color: rgb(172, 172, 172);
 }

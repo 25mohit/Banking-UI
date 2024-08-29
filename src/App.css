@@ -1,5 +1,4 @@
 .App{
-  width: 100vw;
   height: 100vh;
 }
 .navbar{
@@ -9,11 +8,15 @@
 }
 .footer{
   height: var(--footer-height);
-  padding: 0 3rem;
+  padding: 0 2rem;
+  font-size: 0.8rem;
   border-top: 1px solid var(--border-color);
 }
+.hamburger{
+  display: none;
+}
 .section{
-  height: calc(100% - (var(--footer-height) + var(--navbar-height)));
+  min-height: calc(100% - (var(--footer-height) + var(--navbar-height)));
 }
 .df{
   display: flex;

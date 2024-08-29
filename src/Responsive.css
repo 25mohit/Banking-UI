@@ -1,0 +1,70 @@
+@media screen and (max-width: 810px) {
+    .loan-calculation .input-form{
+        min-width: 350px;
+        border-right: none;
+    }
+    .section{
+        max-width: 95vw;
+    }
+    .loan-calculation > section {
+        gap: 2rem;
+        justify-content: center;
+    }
+    .loan-calculation .result-area{
+        padding: 0;
+        width: 100%;
+        align-items: center;
+    }
+}
+@media screen and (max-width: 680px) {
+    
+    .navbar .menu-section .df{
+        display: none;
+    }
+    .navbar .menu-section{
+        padding: 0 1rem;
+        justify-content: right;
+    }
+    .hamburger{
+        font-size: 1.4rem;
+        display: flex;
+    }
+/*     
+    .navbar .mobile-section.show{
+        display: flex;
+        
+        transition: 1s;
+        transform: translateX(-100%);
+
+
+    } */
+}
+@media screen and (max-width: 525px) {
+    
+    .loan-calculation{
+        padding: 1rem 0;
+    }
+    .loan-calculation .result-area .summury{
+        width: 100%;
+    }
+    .loan-calculation .input-form{
+        min-width: 100%;
+    }
+    .summury-table tbody tr{
+        display: flex;
+        flex-direction: column;
+    }
+    .field{
+        width: 100%;
+    }
+    .footer{
+        padding: 0.6rem;
+    }
+    .navbar .top{
+        padding: var(--primary-padding) 1rem;
+    }
+    
+    .navbar .mobile-section{
+        width: 100%;
+    }
+}

@@ -108,35 +108,5 @@ export const navbarOption = [
                 link: '/recurring'
             },
         ]
-    },
-    {
-        label: 'Investment',
-        link: '/investment',
-        nested: [
-            {
-                label: 'Mutual Fund',
-                link: '/fix'
-            },
-            {
-                label: 'Equity Market',
-                link: '/recurring'
-            },
-            {
-                label: 'Invest in Stocke',
-                link: '/recurring'
-            },
-            {
-                label: 'IPO',
-                link: '/recurring'
-            },
-            {
-                label: 'Demat Account',
-                link: '/recurring'
-            },
-            {
-                label: 'Government Scheme',
-                link: '/recurring'
-            }
-        ]
-    },
+    }
 ]
