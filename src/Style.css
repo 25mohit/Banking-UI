@@ -1,0 +1,25 @@
+.navbar{
+}
+.navbar .top{
+    padding: var(--primary-padding);
+    height: 60%;
+}
+.navbar .top > h3{
+    color: var(--primary-color);
+    cursor: pointer;
+    user-select: none;
+}
+.navbar .menu-section{
+    height: 40%;
+    background-color: rgb(250, 242, 228);
+}
+.navbar .menu-section ul{
+    list-style: none;
+    gap: 4rem;
+    font-size: 1.1rem;
+}
+.navbar .menu-section ul li{
+    gap: 0.4rem;
+    cursor: pointer;
+    user-select: none;
+}
