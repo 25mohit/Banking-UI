@@ -5,14 +5,21 @@ interface inputInterface{
     label: String,
     placeholder: string,
     type: HTMLInputTypeAttribute,
-    min?: string
+    min?: string,
+    onChange?: any,
+    name?: string,
+    error?: string,
+    value?: string
 }
-const Input:React.FC<inputInterface> = ({ label, type, placeholder, min }) => {
+const Input:React.FC<inputInterface> = ({ label, type, placeholder, min, onChange, name, value, error }) => {
     const id = RandomNumber(9)
   return (
     <div className='df field'>
-        <label htmlFor={id}>{label}</label>
-        <input type={type} id={id} placeholder={placeholder} {...(type === 'number' && { min })}/>
+        <div className='df aic jcsb'>
+          <label htmlFor={id}>{label}</label>
+          <p className='error'>{error}</p>
+        </div>
+        <input type={type} value={value} id={id} name={name} placeholder={placeholder} onChange={onChange} {...(type === 'number' && { min })}/>
     </div>
   )
 }
