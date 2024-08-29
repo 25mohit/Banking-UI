@@ -1,5 +1,3 @@
-.navbar{
-}
 .navbar .top{
     padding: var(--primary-padding);
     height: 60%;
@@ -15,11 +13,49 @@
 }
 .navbar .menu-section ul{
     list-style: none;
-    gap: 4rem;
-    font-size: 1.1rem;
+    /* gap: 3rem; */
+    font-size: 1rem;
 }
-.navbar .menu-section ul li{
-    gap: 0.4rem;
+.navbar .menu-section > ul > li{
     cursor: pointer;
     user-select: none;
+    position: relative;
+    padding: 0 1.3rem;
+    border-right: 1px solid var(--border-color);
+}
+.navbar .menu-section > ul > li:nth-last-child(1){
+    border-right: none;
+}
+.navbar .menu-section ul li > a{
+    gap: 0.4rem;
+    color: #000000d3;
+    white-space: nowrap;
+}
+.navbar .menu-section ul li .overflow{
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    width: fit-content;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px 1px rgba(20, 20, 20, 0.407);
+    flex-direction: column;
+    gap: 1.2rem;
+    display: none;
+}
+.navbar .menu-section ul li:hover .overflow{
+    display: flex;
+}
+.navbar .menu-section ul li .overflow li a:hover{
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+.footer{
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    color: gray;
+    user-select: none;
+}
+.section{
+    padding: var(--primary-padding);
 }
