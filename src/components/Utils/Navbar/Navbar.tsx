@@ -7,6 +7,10 @@ const Navbar = () => {
     const [showMobileNavbar, setShowMobileNavbar] = useState(false)
     const [showOption, setShowOption] = useState('')
 
+    const toogleOption = (option: string) => {
+        if(showOption === option) setShowOption('')
+        else setShowOption(option)
+    }
   return (
     <nav className='navbar'>
         <div className="top df aic jcsb">
@@ -34,7 +38,7 @@ const Navbar = () => {
                 <ul className='df'>
                     {
                         navbarOption?.map((option, index) => <li key={index}>
-                            <p className={`df ${showOption === option.label ? 'show' : ''}`} onClick={() => setShowOption(option.label)}><span>{option.label} <FaChevronDown /></span>
+                            <p className={`df ${showOption === option.label ? 'show' : ''}`} onClick={() => toogleOption(option.label)}><span>{option.label} <FaChevronDown /></span>
                                 <ul className="overflow">
                                     {
                                         option?.nested?.map((nested, ind) => <li key={ind}><a href={nested.link}>{nested.label}</a></li>)
