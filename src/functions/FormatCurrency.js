@@ -30,3 +30,12 @@ export function formatCurrency(number) {
     words += " rupees";
     return words.trim();
   }  
+
+export function INRCurrency(number){
+    return new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+        minimumFractionDigits:  number % 1 === 0 ? 0 : 2,
+        maximumFractionDigits: 2,
+    }).format(number);
+}

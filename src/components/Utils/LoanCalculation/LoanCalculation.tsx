@@ -3,7 +3,8 @@ import { IoMdCalculator } from "react-icons/io";
 import Input from '../FormInput/Input';
 import Select from '../FormInput/Select';
 import { GrNext } from "react-icons/gr";
-import { formatCurrency } from '../../../functions/FormatCurrency';
+import { formatCurrency, INRCurrency } from '../../../functions/FormatCurrency';
+import { CalculateLoan } from '../../../functions/CalculateLoan';
 
 const LoanCalculation = () => {
     const [loanForm, setLoanForm] = useState({
@@ -16,6 +17,12 @@ const LoanCalculation = () => {
             amount: '',
             tenure: '',
             interest: ''
+        },
+        s:{
+            interestPerMonth: 0,
+            totalPayment: 0,
+            emi: 0,
+            totalInterest: 0,
         }
     })
     const [error, setError] = useState({
@@ -26,9 +33,25 @@ const LoanCalculation = () => {
 
     const interestRates = [
         {
-            label: 'asdasd',
-            key: 'CUstome'
-        }
+            label: '6%',
+            key: '6'
+        },
+        {
+            label: '7%',
+            key: '7'
+        },
+        {
+            label: '8%',
+            key: '8'
+        },
+        {
+            label: '9%',
+            key: '9'
+        },
+        {
+            label: '10%',
+            key: '10'
+        },
     ]
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -76,13 +99,16 @@ const LoanCalculation = () => {
         setError(newError);
         
         if (!newError.amount && !newError.interest) {
+            
             setSummury({
-                d: loanForm
+                d: loanForm,
+                s: CalculateLoan(loanForm)
             })
         }
         
     }
-    // console.log("loanForm", loanForm);
+    console.log("loanForm", summury);
+    
     
   return (
     <div className='loan-calculation'>
@@ -104,27 +130,27 @@ const LoanCalculation = () => {
                         <tbody>
                             <tr>
                                 <td>Loan Amount : </td>
-                                <td>₹58,00,000</td>
+                                <td>{INRCurrency(Number(summury?.d?.amount))}</td>
                             </tr>
                             <tr>
                                 <td>Tenure : </td>
-                                <td>24 months</td>
+                                <td>{summury?.d?.tenure} months</td>
                             </tr>
                             <tr>
-                                <td>Interest Per Month : </td>
-                                <td>₹6,15,615</td>
+                                <td>Interest : </td>
+                                <td>{INRCurrency(summury?.s?.interestPerMonth)} <span title='Per Month'>pm</span></td>
                             </tr>
                             <tr>
                                 <td>EMI : </td>
-                                <td>₹65,000 <span title='Per Month'>pm</span></td>
+                                <td>{INRCurrency(summury?.s?.emi)} <span title='Per Month'>pm</span></td>
                             </tr>
                             <tr>
                                 <td>Total Interest : </td>
-                                <td>₹12,00,000</td>
+                                <td>{INRCurrency(summury?.s?.totalInterest)}</td>
                             </tr>
                             <tr className='total'>
                                 <td>Total Amount : </td>
-                                <td>₹41,56,312</td>
+                                <td>{INRCurrency(summury?.s?.totalPayment)}</td>
                             </tr>
                         </tbody>
                     </table>
