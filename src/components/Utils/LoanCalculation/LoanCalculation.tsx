@@ -113,7 +113,7 @@ const LoanCalculation = () => {
     
   return (
     <div className='loan-calculation'>
-        <h3>Calculate Loan Amount <span>FREE</span></h3>
+        <h3>Calculate Loan for <span>FREE</span></h3>
         <section className='df jcsb'>
             <form className="input-form" method='post'>
                 <Input error={error.amount} value={loanForm.amount} name="amount" label="Loan Amount (₹)" type="number" placeholder="Please enter your loan amount" min="0" onChange={onChangeHandler}/>
