@@ -48,7 +48,6 @@ const LoanCalculation = () => {
                 if(formated?.s){
                     setInterestRates(formated?.data)
                 }
-                console.log("formated", formated); 
             } catch (error) {
                 console.log("errror", error);
                 
@@ -64,7 +63,6 @@ const LoanCalculation = () => {
             // Optional: Check for errors and clear them
             if (error[name] !== '') {
                 setError({...error, [name]:''})
-                console.log(error[name], name);
             }
         }
         
@@ -78,16 +76,12 @@ const LoanCalculation = () => {
         } else {
             setLoanForm({...loanForm, [name]: value})
         }
-        // console.log("easdasd", e.target.value, e.target.name);   
     }
 
     const onCalculateHandler = (e:any) => {
         e.preventDefault()
 
-        console.log("loanForm", loanForm);
         let newError = {...error}
-
-        console.log("loanForm", loanForm);
     
         if (loanForm.amount === '') {
             newError.amount = 'Loan amount Required';
@@ -115,9 +109,7 @@ const LoanCalculation = () => {
                 s: CalculateLoan(loanForm)
             })
         }
-    },[loadingStatus])
-    console.log("loadingStatus", loadingStatus);
-    
+    },[loadingStatus])    
     
   return (
     <div className='loan-calculation'>
