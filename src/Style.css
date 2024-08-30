@@ -111,6 +111,11 @@
     color: gray;
     user-select: none;
 }
+.hero-image{
+    width: 65%;
+    /* margin: 0 50%;
+    transform: translateX(-50%); */
+}
 .section{
     padding: var(--primary-padding);
 }

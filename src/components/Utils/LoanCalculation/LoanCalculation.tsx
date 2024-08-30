@@ -9,6 +9,7 @@ import { RiFileExcel2Line } from "react-icons/ri";
 import { calculateLoanFromAPU, GeneratePDF } from '../../../functions/Utils';
 import FAQ from '../Helpers/FAQ/FAQ';
 import Loader from '../Helpers/Loader/Loader';
+import LoadingScreen from '../Helpers/Loader/LoadingScreen';
 
 const LoanCalculation = () => {
     const [loanForm, setLoanForm] = useState({
@@ -35,7 +36,7 @@ const LoanCalculation = () => {
         interest:''
     })
     const [interestRates, setInterestRates] = useState([])
-    const [loadingStatus, setLoadingStatus] = useState()
+    const [loadingStatus, setLoadingStatus] = useState('')
 
     useEffect(() => {
         const endpoint = 'https://resume-backend-production.up.railway.app'
@@ -102,15 +103,19 @@ const LoanCalculation = () => {
         setError(newError);
         
         if (!newError.amount && !newError.interest) {
-            
+            setLoadingStatus('true')
             calculateLoanFromAPU(setLoadingStatus)
+        }
+    }   
+
+    useEffect(() => {
+        if(loadingStatus === 'false') {
             setSummury({
                 d: loanForm,
                 s: CalculateLoan(loanForm)
             })
         }
-        
-    }   
+    },[loadingStatus])
     console.log("loadingStatus", loadingStatus);
     
     
@@ -129,49 +134,55 @@ const LoanCalculation = () => {
                 <button className="btn" onClick={onCalculateHandler}>Calculate <IoMdCalculator /></button>
             </form>
             <div className="result-area df">
-                <div className="heading">
-                    <span>Required : </span>
-                    <span className='main'><b>₹{formatCurrency(Number(summury?.d?.amount))} </b>Loan for <b>{summury?.d?.tenure} months</b> with <b>{summury?.d?.interest}%</b> pa</span>
-                </div>
-                <div className="summury df">
-                    <table className='summury-table'>
-                        <tbody>
-                            <tr>
-                                <td>Loan Amount : </td>
-                                <td>{INRCurrency(Number(summury?.d?.amount))}</td>
-                            </tr>
-                            <tr>
-                                <td>Tenure : </td>
-                                <td>{summury?.d?.tenure} months</td>
-                            </tr>
-                            <tr>
-                                <td>Interest : </td>
-                                <td>{INRCurrency(summury?.s?.interestPerMonth)} <span title='Per Month'>pm</span></td>
-                            </tr>
-                            <tr>
-                                <td>EMI : </td>
-                                <td>{INRCurrency(summury?.s?.emi)} <span title='Per Month'>pm</span></td>
-                            </tr>
-                            <tr>
-                                <td>Total Interest : </td>
-                                <td>{INRCurrency(summury?.s?.totalInterest)}</td>
-                            </tr>
-                            <tr className='total'>
-                                <td>Total Amount : </td>
-                                <td>{INRCurrency(summury?.s?.totalPayment)}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <footer className='df aic'>
-                    <button className="btn">Proceed <GrNext /></button>
-                    <button className='export-btn' onClick={() => GeneratePDF(summury)}>Download <RiFileExcel2Line /></button>
-                </footer>
+                { loadingStatus !== 'false' ? 
+                    <img src="/Assets/hero.avif" alt="Hero" className='hero-image' />
+                    :
+                    <>
+                    <div className="heading">
+                        <span>Required : </span>
+                        <span className='main'><b>₹{formatCurrency(Number(summury?.d?.amount))} </b>Loan for <b>{summury?.d?.tenure} months</b> with <b>{summury?.d?.interest}%</b> pa</span>
+                    </div>
+                    <div className="summury df">
+                        <table className='summury-table'>
+                            <tbody>
+                                <tr>
+                                    <td>Loan Amount : </td>
+                                    <td>{INRCurrency(Number(summury?.d?.amount))}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tenure : </td>
+                                    <td>{summury?.d?.tenure} months</td>
+                                </tr>
+                                <tr>
+                                    <td>Interest : </td>
+                                    <td>{INRCurrency(summury?.s?.interestPerMonth)} <span title='Per Month'>pm</span></td>
+                                </tr>
+                                <tr>
+                                    <td>EMI : </td>
+                                    <td>{INRCurrency(summury?.s?.emi)} <span title='Per Month'>pm</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Total Interest : </td>
+                                    <td>{INRCurrency(summury?.s?.totalInterest)}</td>
+                                </tr>
+                                <tr className='total'>
+                                    <td>Total Amount : </td>
+                                    <td>{INRCurrency(summury?.s?.totalPayment)}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <footer className='df aic'>
+                        <button className="btn">Proceed <GrNext /></button>
+                        <button className='export-btn' onClick={() => GeneratePDF(summury)}>Download <RiFileExcel2Line /></button>
+                    </footer>
+                    </>
+                }
             </div>
         </section>
         <p className='terms-heading'>Terms and Condition</p>
         <FAQ />
-        {/* {loadingStatus && } */}
+        {loadingStatus === 'true' && <LoadingScreen />}
     </div>
   )
 }

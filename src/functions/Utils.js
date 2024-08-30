@@ -33,6 +33,6 @@ export const GeneratePDF = (summury) => {
 
 export const calculateLoanFromAPU = (setLoadingStatus) => {
     setTimeout(() => {
-        setLoadingStatus(true)
-    },4000)
+        setLoadingStatus('false')
+    },1500)
 }

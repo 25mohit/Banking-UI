@@ -1,8 +1,11 @@
 import React from 'react'
+import Loader from './Loader'
 
 const LoadingScreen = () => {
   return (
-    <div>LoadingScreen</div>
+    <div className='loading-screen'>
+        <Loader />
+    </div>
   )
 }
 
