@@ -23,7 +23,7 @@ const Select:React.FC<SelectProps> = ({ label, options, placeholder, onChange, n
           <p className='error'>{error}</p>
         </div>
         <select name={name} id={id} onChange={onChange} value={value}>
-            <option>{placeholder}</option>
+            <option value="">{placeholder}</option>
             {options.map((option: any, index: any) => (
             <option key={index} value={option.key}>
                 {option.key}% {option.bank} Bank - {option.label} Loan
