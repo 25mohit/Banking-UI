@@ -19,7 +19,7 @@ const Input:React.FC<inputInterface> = ({ label, type, placeholder, min, onChang
           <label htmlFor={id}>{label}</label>
           <p className='error'>{error}</p>
         </div>
-        <input type={type} value={value} id={id} name={name} placeholder={placeholder} onChange={onChange} {...(type === 'number' && { min })}/>
+        <input type={type} value={value} id={id} name={name} placeholder={placeholder} onChange={onChange} {...(type === 'number' && { min, inputMode :'numeric' }) }/>
     </div>
   )
 }
