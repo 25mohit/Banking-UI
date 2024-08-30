@@ -132,3 +132,28 @@ a{
 .export-btn:hover{
   text-decoration: underline;
 }
+.success-modal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  padding: var(--primary-padding);
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 2px rgba(37, 37, 37, 0.5);
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-align: center;
+}
+.success-modal .approve-icon{
+  font-size: 2.4rem;
+}
+.success-modal p{
+  font-size: 1.3rem;
+}
+.success-modal p span{
+  color: var(--primary-color);
+}

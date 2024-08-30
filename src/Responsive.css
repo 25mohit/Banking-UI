@@ -28,7 +28,12 @@
     }
 }
 @media screen and (max-width: 525px) {
-    
+    .success-modal{
+        width: 85vw;
+    }
+    .success-modal p{
+        font-size: 1.1rem;
+    }
     .loan-calculation{
         padding: 1rem 0;
     }

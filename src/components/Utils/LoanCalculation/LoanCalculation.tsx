@@ -10,6 +10,7 @@ import { calculateLoanFromAPU, GeneratePDF } from '../../../functions/Utils';
 import FAQ from '../Helpers/FAQ/FAQ';
 import Loader from '../Helpers/Loader/Loader';
 import LoadingScreen from '../Helpers/Loader/LoadingScreen';
+import SuccessModal from '../Modals/SuccessModal';
 
 const LoanCalculation = () => {
     const [loanForm, setLoanForm] = useState({
@@ -36,7 +37,8 @@ const LoanCalculation = () => {
         interest:''
     })
     const [interestRates, setInterestRates] = useState([])
-    const [loadingStatus, setLoadingStatus] = useState('')
+    const [loadingStatus, setLoadingStatus] = useState(false)
+    const [showSuccessModal, setShowSuccessModal] = useState(false)
 
     useEffect(() => {
         const endpoint = 'https://resume-backend-production.up.railway.app'
@@ -49,10 +51,8 @@ const LoanCalculation = () => {
                     setInterestRates(formated?.data)
                 }
             } catch (error) {
-                console.log("errror", error);
-                
-            }
-            
+                console.log("errror", error);   
+            }  
         }
         fetchInterestRate()
     },[])
@@ -60,7 +60,6 @@ const LoanCalculation = () => {
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const {name, value} = e.target
         if (name === 'amount' || name === 'tenure' || name === 'interest') {
-            // Optional: Check for errors and clear them
             if (error[name] !== '') {
                 setError({...error, [name]:''})
             }
@@ -86,7 +85,6 @@ const LoanCalculation = () => {
         if (loanForm.amount === '') {
             newError.amount = 'Loan amount Required';
         }
-    
         if (loanForm.tenure === '') {
             newError.tenure = 'Loan Tenure Required';
         }
@@ -97,19 +95,27 @@ const LoanCalculation = () => {
         setError(newError);
         
         if (!newError.amount && !newError.interest) {
-            setLoadingStatus('true')
+            setLoadingStatus(true)
             calculateLoanFromAPU(setLoadingStatus)
         }
     }   
 
     useEffect(() => {
-        if(loadingStatus === 'false') {
+        if(loadingStatus === false) {
             setSummury({
                 d: loanForm,
                 s: CalculateLoan(loanForm)
             })
         }
     },[loadingStatus])    
+    
+    const onProceedHandler = () => {
+        setLoadingStatus(true)
+        setTimeout(() => {
+            setLoadingStatus(false)
+            setShowSuccessModal(true)
+        },2000)
+    }
     
   return (
     <div className='loan-calculation'>
@@ -126,7 +132,7 @@ const LoanCalculation = () => {
                 <button className="btn" onClick={onCalculateHandler}>Calculate <IoMdCalculator /></button>
             </form>
             <div className="result-area df">
-                { loadingStatus !== 'false' ? 
+                { !summury?.s?.totalPayment ? 
                     <img src="/Assets/hero.avif" alt="Hero" className='hero-image' />
                     :
                     <>
@@ -165,16 +171,17 @@ const LoanCalculation = () => {
                         </table>
                     </div>
                     <footer className='df aic'>
-                        <button className="btn">Proceed <GrNext /></button>
+                        <button className="btn" onClick={onProceedHandler}>Proceed <GrNext /></button>
                         <button className='export-btn' onClick={() => GeneratePDF(summury)}>Download <RiFileExcel2Line /></button>
                     </footer>
                     </>
-                }
+                } 
             </div>
         </section>
         <p className='terms-heading'>Terms and Condition</p>
         <FAQ />
-        {loadingStatus === 'true' && <LoadingScreen />}
+        {loadingStatus === true && <LoadingScreen />}
+        {showSuccessModal && <SuccessModal onClose={() => setShowSuccessModal(false)}/>}
     </div>
   )
 }
