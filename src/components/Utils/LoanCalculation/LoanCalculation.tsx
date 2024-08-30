@@ -41,6 +41,8 @@ const LoanCalculation = () => {
     const [showSuccessModal, setShowSuccessModal] = useState(false)
 
     useEffect(() => {
+
+        // Inside the useEffect getting Interest Rate from API, and setting it's response to setInterestRates
         const endpoint = 'https://resume-backend-production.up.railway.app'
         async function fetchInterestRate(){
             try {
@@ -57,6 +59,7 @@ const LoanCalculation = () => {
         fetchInterestRate()
     },[])
 
+    // Common onChange function for all 3 Loan Form fields, LOan Amount / Loan Tenure / Interest Rate
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const {name, value} = e.target
         if (name === 'amount' || name === 'tenure' || name === 'interest') {
@@ -77,6 +80,7 @@ const LoanCalculation = () => {
         }
     }
 
+    // Function to validate the Form and Calculate the Loan based on user input
     const onCalculateHandler = (e:any) => {
         e.preventDefault()
 
@@ -100,6 +104,7 @@ const LoanCalculation = () => {
         }
     }   
 
+    // useEffect to setting calaulated loan data to setSummery state, that we can show in Summury Section
     useEffect(() => {
         if(loadingStatus === false) {
             setSummury({
@@ -109,6 +114,7 @@ const LoanCalculation = () => {
         }
     },[loadingStatus])    
     
+    // Function to Proceed the user after calculating loan, and showing success message
     const onProceedHandler = () => {
         setLoadingStatus(true)
         setTimeout(() => {
