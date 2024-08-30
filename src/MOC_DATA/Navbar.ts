@@ -1,111 +1,111 @@
 export const navbarOption = [
     {
         label: 'Accounts',
-        link: '/accounts',
+        link: '',
         nested: [
             {
                 label: 'Salary Account',
-                link: '/salary'
+                link: '',    
             },
             {
                 label: 'Current Account',
-                link: '/current'
+                link: '',    
             },
             {
                 label: 'Saving Account',
-                link: '/saving'
+                link: '',    
             },
         ]
     },
     {
         label: 'Deposits',
-        link: '/deposits',
+        link: '',
         nested: [
             {
                 label: 'Fix Deposit',
-                link: '/fix'
+                link: '',    
             },
             {
                 label: 'Recurring Deposit',
-                link: '/recurring'
+                link: '',    
             },
             {
                 label: 'iWish - Goal Based Saving',
-                link: '/recurring'
+                link: '',    
             },
         ]
     },
     {
         label: 'Payments',
-        link: '/payments',
+        link: '',
         nested: [
             {
                 label: 'Money Transfer',
-                link: '/fix'
+                link: '',    
             },
             {
                 label: 'Overdue Loan Payment',
-                link: '/recurring'
+                link: '',    
             },
             {
                 label: 'Credit Card Bill Payment',
-                link: '/recurring'
+                link: '',    
             },
             {
                 label: 'Bill Payment & Recharge',
-                link: '/recurring'
+                link: '',    
             },
         ]
     },
     {
         label: 'Cards',
-        link: '/cards',
+        link: '',
         nested: [
             {
                 label: 'Credit Card',
-                link: '/fix'
+                link: '',    
             },
             {
                 label: 'Debit Card',
-                link: '/recurring'
+                link: '',    
             },
             {
                 label: 'Forex Card',
-                link: '/recurring'
+                link: '',    
             }
         ]
     },
     {
         label: 'Loans',
-        link: '/loans',
+        link: '',
         nested: [
             {
                 label: 'Personal Loan',
-                link: '/fix'
+                link: '',    
             },
             {
                 label: 'Home Loan',
-                link: '/recurring'
+                link: '',    
             },
             {
                 label: 'Car Loan',
-                link: '/recurring'
+                link: '',    
             },
             {
                 label: 'Education Loan',
-                link: '/recurring'
+                link: '',    
             },
             {
                 label: 'Two Wheeler Loan',
-                link: '/recurring'
+                link: '',    
             },
             {
                 label: 'Smart Loan',
-                link: '/recurring'
+                link: '',    
             },
             {
                 label: 'Agri & Farming Loan',
-                link: '/recurring'
+                link: '',    
             },
         ]
     }
