@@ -42,7 +42,7 @@
         display: flex;
         flex-direction: column;
     }
-    .field{
+    .field,.field-loading{
         width: 100%;
     }
     .footer{

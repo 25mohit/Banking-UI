@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoMdCalculator } from "react-icons/io";
 import Input from '../FormInput/Input';
 import Select from '../FormInput/Select';
 import { GrNext } from "react-icons/gr";
 import { formatCurrency, INRCurrency } from '../../../functions/FormatCurrency';
 import { CalculateLoan } from '../../../functions/CalculateLoan';
-import { jsPDF } from 'jspdf';
 import { RiFileExcel2Line } from "react-icons/ri";
-import { GeneratePDF } from '../../../functions/Utils';
+import { calculateLoanFromAPU, GeneratePDF } from '../../../functions/Utils';
 import FAQ from '../Helpers/FAQ/FAQ';
+import Loader from '../Helpers/Loader/Loader';
 
 const LoanCalculation = () => {
     const [loanForm, setLoanForm] = useState({
@@ -34,29 +34,28 @@ const LoanCalculation = () => {
         tenure: '',
         interest:''
     })
+    const [interestRates, setInterestRates] = useState([])
+    const [loadingStatus, setLoadingStatus] = useState()
 
-    const interestRates = [
-        {
-            label: '6%',
-            key: '6'
-        },
-        {
-            label: '7%',
-            key: '7'
-        },
-        {
-            label: '8%',
-            key: '8'
-        },
-        {
-            label: '9%',
-            key: '9'
-        },
-        {
-            label: '10%',
-            key: '10'
-        },
-    ]
+    useEffect(() => {
+        const endpoint = 'https://resume-backend-production.up.railway.app'
+        async function fetchInterestRate(){
+            try {
+                const response = await fetch(`${endpoint}/interest-rate/bank`)
+                const formated = await response.json()
+                
+                if(formated?.s){
+                    setInterestRates(formated?.data)
+                }
+                console.log("formated", formated); 
+            } catch (error) {
+                console.log("errror", error);
+                
+            }
+            
+        }
+        fetchInterestRate()
+    },[])
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const {name, value} = e.target
@@ -104,6 +103,7 @@ const LoanCalculation = () => {
         
         if (!newError.amount && !newError.interest) {
             
+            calculateLoanFromAPU(setLoadingStatus)
             setSummury({
                 d: loanForm,
                 s: CalculateLoan(loanForm)
@@ -111,6 +111,8 @@ const LoanCalculation = () => {
         }
         
     }   
+    console.log("loadingStatus", loadingStatus);
+    
     
   return (
     <div className='loan-calculation'>
@@ -119,7 +121,11 @@ const LoanCalculation = () => {
             <form className="input-form" method='post'>
                 <Input error={error.amount} value={loanForm.amount} name="amount" label="Loan Amount (₹)" type="number" placeholder="Please enter your loan amount" min="0" onChange={onChangeHandler}/>
                 <Input error={error.tenure} value={loanForm.tenure} name="tenure" label="Loan Tenure (in months)" type="number" placeholder="How long you want this loan" min="0" onChange={onChangeHandler}/>
-                <Select error={error.interest} value={loanForm.interest} name="interest" label="Loan Interest Rate" options={interestRates} placeholder="Select Interest Rate" onChange={onChangeHandler}/>
+                
+                { !interestRates?.length ? <div className="field-loading">
+                    <Loader /> 
+                </div> :
+                <Select error={error.interest} value={loanForm.interest} name="interest" label="Loan Interest Rate" options={interestRates} placeholder="Select Interest Rate" onChange={onChangeHandler}/> }
                 <button className="btn" onClick={onCalculateHandler}>Calculate <IoMdCalculator /></button>
             </form>
             <div className="result-area df">
@@ -165,6 +171,7 @@ const LoanCalculation = () => {
         </section>
         <p className='terms-heading'>Terms and Condition</p>
         <FAQ />
+        {/* {loadingStatus && } */}
     </div>
   )
 }

@@ -26,7 +26,7 @@ const Select:React.FC<SelectProps> = ({ label, options, placeholder, onChange, n
             <option>{placeholder}</option>
             {options.map((option: any, index: any) => (
             <option key={index} value={option.key}>
-                {option.label}
+                {option.key}% {option.bank} Bank - {option.label} Loan
             </option>
             ))}
         </select>

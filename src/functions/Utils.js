@@ -1,13 +1,11 @@
 import jsPDF from "jspdf";
 
 export const GeneratePDF = (summury) => {
-    console.log("summurysummury", summury);
     
     const doc = new jsPDF();
 
-    // Add Image
-    const imgData = `${process.env.PUBLIC_URL}/Assets/logo.png`;; // This should be the Base64 string or path
-    doc.addImage(imgData, 'PNG', 70, 10, 50, 17); // (image, format, x, y, width, height)
+    const imgData = `${process.env.PUBLIC_URL}/Assets/logo.png`;
+    doc.addImage(imgData, 'PNG', 70, 10, 50, 17);
 
     // Set Font Size
     doc.setFontSize(18);
@@ -16,7 +14,7 @@ export const GeneratePDF = (summury) => {
     const rupeeSymbol = 'INR';
 
     doc.text("Loan Amount:", 10, 45);
-    doc.text(`${rupeeSymbol} ${summury?.d?.amount}`, 60, 45); // Manually set x-coordinate
+    doc.text(`${rupeeSymbol} ${summury?.d?.amount}`, 60, 45);
     doc.text("Tenure:", 10, 55);
     doc.text(`${summury?.d?.tenure} months`, 60, 55);
     doc.text("Interest Rate:", 10, 65);
@@ -31,4 +29,10 @@ export const GeneratePDF = (summury) => {
     doc.text(`${rupeeSymbol} ${summury?.s?.totalPayment.toFixed(2)}`, 60, 105);
     // Save the PDF
     doc.save("loan_details.pdf");
+}
+
+export const calculateLoanFromAPU = (setLoadingStatus) => {
+    setTimeout(() => {
+        setLoadingStatus(true)
+    },4000)
 }
